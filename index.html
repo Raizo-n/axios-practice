@@ -20,17 +20,23 @@
     <div id="root"></div>
     <!-- <script type="module" src="/src/main.jsx"></script> -->
     <script type="text/babel">
-      const { useEffect } = React;
+      const { useEffect, useState } = React;
       const App = () => {
+        const [users, setUsers] = useState([]);
         useEffect(() => {
           axios
             .get("https://jsonplaceholder.typicode.com/users")
-            .then((response) => console.log(response))
+            .then((response) => setUsers(response.data))
             .catch((error) => console.log(error));
         }, []);
         return (
           <div>
-            <h1>React</h1>
+            <h1>axios practice with React</h1>
+            <ul>
+              {users.map((user, index) => (
+                <li key={index}>{user.name}</li>
+              ))}
+            </ul>
           </div>
         );
       };
