@@ -32,27 +32,13 @@
             .catch((error) => console.log(error));
         }, []);
 
-        axios
-          .post("/users", {
-            firstName: "John",
-            lastName: "Lennon",
-          })
-          .then(function (response) {
-            console.log(response);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-
         const handleChange = (e) => {
           setName(e.target.value);
         };
 
         const createNewUser = (e) => {
           axios
-            .post("https://jsonplaceholder.typicode.com/users", {
-              name: name,
-            })
+            .post("https://jsonplaceholder.typicode.com/users", { name })
             .then((response) => setUsers([...users, response.data]))
             .catch((error) => console.log(error));
         };
