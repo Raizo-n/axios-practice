@@ -59,10 +59,10 @@
             <button onClick={createNewUser}>Add</button>
             <ul>
               {users.map((user, index) => (
-                  <li key={index}>
-                    {user.name}:
-                    <button onClick={() => deleteUser(user.id)}>Delete</button>
-                  </li>
+                <li key={index}>
+                  {user.name} : &nbsp;
+                  <button onClick={() => deleteUser(user.id)}>Delete</button>
+                </li>
               ))}
             </ul>
           </div>
