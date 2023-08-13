@@ -34,6 +34,18 @@
         }, []);
 
         // Post method
+        const handleChange = (e) => setName(e.target.value);
+
+        const createNewUser = (e) => {
+          axios
+            .post("https://jsonplaceholder.typicode.com/users", {
+              name: name,
+            })
+            .then((response) => {
+              setUsers([...users, response.data]);
+            })
+            .catch((error) => console.log(error));
+        };
 
         // Delete method
 
@@ -42,6 +54,13 @@
         return (
           <div>
             <h1>2nd times for axios-practice</h1>
+            <input
+              type="text"
+              value={name}
+              placeholder="Enter a name..."
+              onChange={handleChange}
+            />
+            <button onClick={createNewUser}>Create</button>
             <ul>
               {users.map((user, index) => (
                 <li key={index}>{user.name}</li>
