@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>axios-practice</title>
+    <title>2nd times for axios-practice</title>
     <script
       crossorigin
       src="https://unpkg.com/react@17/umd/react.development.js"
@@ -18,7 +18,6 @@
   </head>
   <body>
     <div id="root"></div>
-    <!-- <script type="module" src="/src/main.jsx"></script> -->
     <script type="text/babel">
       const { useEffect, useState } = React;
 
@@ -27,66 +26,16 @@
         const [name, setName] = useState("");
 
         // Get method
-        useEffect(() => {
-          axios
-            .get("https://jsonplaceholder.typicode.com/users")
-            .then((response) => setUsers(response.data))
-            .catch((error) => console.log(error));
-        }, []);
-
-        const handleChange = (e) => setName(e.target.value);
 
         // Post method
-        const createNewUser = (e) => {
-          axios
-            .post("https://jsonplaceholder.typicode.com/users", { name })
-            .then((response) => setUsers([...users, response.data]))
-            .catch((error) => console.log(error));
-        };
 
         // Delete method
-        const deleteUser = (id) => {
-          axios
-            .delete(`https://jsonplaceholder.typicode.com/users/${id}`)
-            .then((response) => {
-              console.log(response);
-              setUsers(users.filter((user) => user.id !== id));
-            })
-            .catch((error) => console.log(error));
-        };
 
         // Update method
-        const updateUser = (id) => {
-          axios
-            .patch(`https://jsonplaceholder.typicode.com/users/${id}`, {
-              name: "John Lennon",
-            })
-            .then((response) => {
-              let updateUsers = users.map((user) =>
-                user.id === response.data.id ? response.data : user
-              );
-              setUsers(updateUsers);
-            })
-            .catch((error) => console.log(error));
-        };
 
         return (
-          <div>
-            <h1>axios practice with React</h1>
-            <input value={name} onChange={handleChange} /> &nbsp;
-            <button onClick={createNewUser}>Add</button>
-            <ul>
-              {users.map((user, index) => (
-                <li key={index}>
-                  {user.name} : &nbsp;
-                  <button onClick={() => deleteUser(user.id)}>
-                    Delete
-                  </button>{" "}
-                  &nbsp;
-                  <button onClick={() => updateUser(user.id)}>Update</button>
-                </li>
-              ))}
-            </ul>
+          <div >
+            <h1>2nd times for axios-practice</h1>
           </div>
         );
       };
