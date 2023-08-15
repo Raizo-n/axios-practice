@@ -37,12 +37,20 @@
         const handleChange = (e) => setName(e.target.value);
 
         const createNewUser = (e) => {
+
+          // check if the input is empty
+          if(e.target.value === '') {
+            return alert('Please enter the name');
+          }
+
           axios
             .post("https://jsonplaceholder.typicode.com/users", {
               name: name,
             })
             .then((response) => {
               setUsers([...users, response.data]);
+              // clear the input after the click
+              setName('')
             })
             .catch((error) => console.log(error));
         };
