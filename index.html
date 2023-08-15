@@ -26,6 +26,12 @@
         const [name, setName] = useState("");
 
         // Get method
+        useEffect(() => {
+          axios
+            .get("https://jsonplaceholder.typicode.com/users")
+            .then((response) => setUsers(response.data))
+            .catch((error) => console.log(error));
+        }, []);
 
         // Post method
 
@@ -34,8 +40,13 @@
         // Update method
 
         return (
-          <div >
+          <div>
             <h1>2nd times for axios-practice</h1>
+            <ul>
+              {users.map((user, index) => (
+                <li key={index}>{user.name}</li>
+              ))}
+            </ul>
           </div>
         );
       };
