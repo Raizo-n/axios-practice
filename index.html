@@ -66,15 +66,22 @@
         };
 
         // Update method
-        const updateUser = (id)=> {
+        const updateUser = (id) => {
           axios
-          .patch(`https://jsonplaceholder.typicode.com/users/${id}`, {
-            name: 'John Lennon'
-          })
-          .then(response => {
-            
-          })
-        }
+            .patch(`https://jsonplaceholder.typicode.com/users/${id}`, {
+              name: "John Lennon",
+            })
+            .then((response) => {
+              let updateUsers = users.map((user) => {
+                if (user.id === response.data.id) {
+                  return response.data;
+                } else {
+                  return user;
+                }
+              });
+              setUsers(updateUsers);
+            });
+        };
 
         return (
           <div>
@@ -90,8 +97,8 @@
               {users.map((user, index) => (
                 <li key={index}>
                   {user.name} :{" "}
-                  <button onClick={()=>deleteUser(user.id)}>Delete</button>
-                  <button onClick={()=>updateUser(user.id)}>Update</button>
+                  <button onClick={() => deleteUser(user.id)}>Delete</button>
+                  <button onClick={() => updateUser(user.id)}>Update</button>
                 </li>
               ))}
             </ul>
