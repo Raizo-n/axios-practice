@@ -37,9 +37,8 @@
         const handleChange = (e) => setName(e.target.value);
 
         const createNewUser = (e) => {
-
           // check if the input is empty
-          if(e.target.value === '') {
+          if(name === '') {
             return alert('Please enter the name');
           }
 
