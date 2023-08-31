@@ -38,8 +38,8 @@
 
         const createNewUser = (e) => {
           // check if the input is empty
-          if(name === '') {
-            return alert('Please enter the name');
+          if (name === "") {
+            return alert("Please enter the name");
           }
 
           axios
@@ -49,12 +49,21 @@
             .then((response) => {
               setUsers([...users, response.data]);
               // clear the input after the click
-              setName('')
+              setName("");
             })
             .catch((error) => console.log(error));
         };
 
         // Delete method
+        const deleteUser = (id) => {
+          axios
+            .delete(`https://jsonplaceholder.typicode.com/users/${id}`)
+            .then((response) => {
+              console.log(response);
+              setUsers(users.filter((user) => user.id !== id));
+            })
+            .catch((error) => console.log(error));
+        };
 
         // Update method
 
@@ -70,7 +79,10 @@
             <button onClick={createNewUser}>Create</button>
             <ul>
               {users.map((user, index) => (
-                <li key={index}>{user.name}</li>
+                <li key={index}>
+                  {user.name} :{" "}
+                  <button onClick={()=>deleteUser(user.id)}>Delete</button>
+                </li>
               ))}
             </ul>
           </div>
