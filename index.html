@@ -72,13 +72,9 @@
               name: "John Lennon",
             })
             .then((response) => {
-              let updateUsers = users.map((user) => {
-                if (user.id === response.data.id) {
-                  return response.data;
-                } else {
-                  return user;
-                }
-              });
+              let updateUsers = users.map((user) =>
+                user.id === response.data.id ? response.data : user
+              );
               setUsers(updateUsers);
             });
         };
